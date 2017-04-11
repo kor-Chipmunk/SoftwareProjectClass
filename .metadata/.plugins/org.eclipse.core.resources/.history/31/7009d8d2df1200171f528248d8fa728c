@@ -1,0 +1,7 @@
+
+public class Double {
+	private double value = 0.0;
+	
+	public Double() {	}
+	public Double(double defaultValue) { value = defaultValue; }
+}

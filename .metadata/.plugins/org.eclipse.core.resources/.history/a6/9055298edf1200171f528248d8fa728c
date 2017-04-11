@@ -1,0 +1,8 @@
+
+public class Double {
+	double value;
+	
+	Double() {
+		
+	}
+}

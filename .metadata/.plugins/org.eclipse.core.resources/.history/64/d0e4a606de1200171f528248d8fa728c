@@ -1,0 +1,112 @@
+
+public class TestCStyle {
+	
+	public static int distance(PointStruct point1, PointStruct point2, Double rtnVar) {
+		double val = Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
+		
+		if (val >= 0.0) {
+			System.out.println(rtnVar.doubleValue());
+			rtnVar.valueOf(10.0);
+			return 0;
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	public static int distanceWithAbsolutePoint(PointStruct point1, double absX, double absY, Double rtnVar) {
+		PointStruct absPoint = new PointStruct();
+		int result;
+		
+		absPoint.x = absX;
+		absPoint.y = absY;
+		result = distance(point1, absPoint, rtnVar);
+		
+		if (result == 0) {
+			return 0;
+		}
+		else {
+			return -1;
+		}
+	}
+	
+	public static void move(PointStruct point, double moveX, double moveY) {
+		point.x += moveX;
+		point.y += moveY;
+	}
+	
+	public static void moveWithRelativePoint(PointStruct point, PointStruct relativePoint) {
+		point.x += relativePoint.x;
+		point.y += relativePoint.y;
+	}
+	
+	public static void print(PointStruct point) {
+		System.out.printf("현재 X좌표 : %f\t현재 Y좌표 : %f\n", point.x, point.y);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		PointStruct point1 = new PointStruct();
+		PointStruct point2 = new PointStruct();
+		
+		Double rtnValue = new Double(0.0);
+		
+		point1.x = 0;
+		point1.y = 0;
+		
+		point2.x = 2.0;
+		point2.y = 2.0;
+		
+		try {
+			// 초기 위치 체크
+			assert point1.x == 0 && point1.y == 0 : "Point1의 위치 (0, 0)이 아닙니다!";
+			assert point2.x == 2.0 && point2.y == 2.0 : "Point1의 위치 (2.0, 2.0)이 아닙니다!";
+			
+			// 두 점 사이의 거리 출력
+			if (distance(point1, point2, rtnValue) == -1) {
+				System.out.println("오류가 발생하였습니다!");
+			}
+			else {
+				System.out.printf("두 점 사이의 거리 : %f\n", rtnValue.doubleValue());
+			}
+			
+			/*
+			if (distanceWithAbsolutePoint(point1, 2, 2, rtnValue) == -1) {
+				System.out.println("오류가 발생하였습니다!");
+			}
+			else {
+				System.out.printf("두 점 사이의 거리 : %f\n", rtnValue.doubleValue());
+			}
+			*/
+			
+			// 두 점 사이의 거리 체크
+			assert rtnValue.doubleValue() == Math.sqrt(8.0) : "두 점 사이의 거리가 틀립니다!";
+			
+			// 점1 Y좌표로 2 이동
+			// move(point1, 0, 2.0);
+			PointStruct relativePoint = new PointStruct();
+			// relativePoint.x = 0;
+			// relativePoint.y = 2.0;
+			// moveWithRelativePoint(point1, relativePoint);
+			
+			// 점1의 좌표 체크
+			assert point1.x == 0 && point1.y == 2 : "Point1의 위치 (0, 2.0)이 아닙니다!";
+			
+			// 점1의 좌표 출력
+			print(point1);
+			
+			// 두 점 사이의 거리 출력
+			if (distance(point1, point2, rtnValue) == -1) {
+				System.out.println("오류가 발생하였습니다!");
+			}
+			else {
+				System.out.printf("두 점 사이의 거리 : %f\n", rtnValue.doubleValue());
+			}
+			
+			// 두 점 사이의 거리 체크
+			assert rtnValue.doubleValue() == Math.sqrt(4.0) : "두 점 사이의 거리가 틀립니다!";
+		}
+		catch (AssertionError assertion) { System.out.println("[ AssertionError ] : " + assertion.getMessage()); }
+	}
+
+}

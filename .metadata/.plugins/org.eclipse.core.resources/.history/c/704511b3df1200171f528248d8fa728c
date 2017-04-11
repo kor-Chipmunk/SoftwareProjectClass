@@ -1,0 +1,7 @@
+
+public class Double {
+	double value = 0.0;
+	
+	Double() {	}
+	Double(double defaultValue) { value = defaultValue; }
+}
